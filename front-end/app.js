@@ -20,9 +20,14 @@ async function register() {
     });
 
     const data = await response.json();
+    const msg = document.getElementById("message");
+    msg.innerText = data.message || "Registration complete";
 
-    document.getElementById("message").innerText =
-      data.message || "Registration complete";
+    if (response.ok) {
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 1500);
+    }
   } catch (error) {
     document.getElementById("message").innerText = "Cannot connect to server";
   }
